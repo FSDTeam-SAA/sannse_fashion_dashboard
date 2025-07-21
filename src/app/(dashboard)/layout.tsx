@@ -20,7 +20,7 @@ export default async function RootLayout({
       <Header />
       <div className="flex">
         <Sidebar />
-        <div className="w-full mt-[60px] bg-[#EDEEF1]">{children}</div>
+        <div className="w-full mt-[80px] p-6 bg-[#EDEEF1]">{children}</div>
       </div>
    </>
  
