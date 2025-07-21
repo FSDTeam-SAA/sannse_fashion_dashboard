@@ -14,6 +14,7 @@ import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import AuthHeader from "./auth-header";
+import { Label } from "@/components/ui/label";
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -35,7 +36,7 @@ export default function SignInForm() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto flex flex-col items-center">
+    <div className="w-full max-w-xl mx-auto flex flex-col items-center rounded-xl">
       <AuthHeader
         title1="Hello"
         title2="Welcome"
@@ -43,88 +44,106 @@ export default function SignInForm() {
       />
 
       {/* Form */}
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full py-6 md:py-7 lg:py-8 px-4 md:px-5 lg:px-6 space-y-5"
-        >
-          {/* Email Field */}
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                      <Mail className="w-4 h-4 text-[#999999]" />
+      <div className="bg-[#FDE8E9] w-full px-4 lg:pt-5 sm:px-6 md:px-8 mt-8 rounded-[8px]">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-full py-6 space-y-6"
+          >
+            {/* Email Field */}
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <Label
+                    htmlFor="email"
+                    className="text-sm font-medium text-gray-800"
+                  >
+                    Email
+                  </Label>
+                  <FormControl>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                        <Mail className="w-5 h-5 text-gray-500" />
+                      </div>
+                      <Input
+                        placeholder="Enter your email"
+                        className="w-full pl-12 pr-4 py-3 h-[50px] rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                        {...field}
+                      />
                     </div>
-                    <Input
-                      placeholder="Enter your email"
-                      className=" w-full md:w-[400px]   pl-[42px] pr-4 py-[15px] rounded-[8px]"
-                      {...field}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage className="text-xs mt-1" />
-              </FormItem>
-            )}
-          />
+                  </FormControl>
+                  <FormMessage className="text-xs mt-1 text-red-500" />
+                </FormItem>
+              )}
+            />
 
-          {/* Password Field */}
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                      <Lock className="h-4 w-4 text-gray-400" />
+            {/* Password Field */}
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <Label
+                    htmlFor="email"
+                    className="text-sm font-medium text-gray-800"
+                  >
+                    Password
+                  </Label>
+                  <FormControl>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                        <Lock className="h-5 w-5 text-gray-500" />
+                      </div>
+                      <Input
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Enter your Password"
+                        className="w-full pl-12 pr-10 py-3  h-[50px] rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                        {...field}
+                      />
+                      <button
+                        type="button"
+                        className="absolute inset-y-0 right-3 flex items-center"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? (
+                          <EyeOff className="h-5 w-5 text-gray-500" />
+                        ) : (
+                          <Eye className="h-5 w-5 text-gray-500" />
+                        )}
+                      </button>
                     </div>
-                    <Input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Enter your Password"
-                      className=" w-full md:w-[400px]  pl-[42px] pr-4 py-[15px] rounded-[8px]"
-                      {...field}
-                    />
-                    <button
-                      type="button"
-                      className="absolute inset-y-0 right-3 flex items-center"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? (
-                        <EyeOff className="h-5 w-5 text-gray-400" />
-                      ) : (
-                        <Eye className="h-5 w-5 text-gray-400" />
-                      )}
-                    </button>
-                  </div>
-                </FormControl>
-                <FormMessage className="text-xs mt-1" />
-              </FormItem>
-            )}
-          />
+                  </FormControl>
+                  <FormMessage className="text-xs mt-1 text-red-500" />
+                </FormItem>
+              )}
+            />
 
-          {/* Sign In Button */}
-          <Button type="submit" className="w-full" disabled={isPending}>
-            Sign In
-          </Button>
+            {/* Sign In Button */}
+            <div className="pt-4">
+              <Button
+                type="submit"
+                className="w-full h-[50px] text-base font-semibold rounded-lg   bg-primary text-white hover:bg-primary/90"
+                disabled={isPending}
+              >
+                {isPending ? "Signing In..." : "Sign In"}
+              </Button>
+            </div>
 
-          {/* Sign Up Link */}
-          {/* <div className="text-center text-sm mt-4 md:mt-5 lg:mt-6">
-            <span className="font-poppins text-[#891D33] text-xs font-normal leading-[120%] tracking-[0%]">
-              New To our Platform?
-            </span>{" "}
-            <Link
-              href="/signup"
-              className="font-poppins text-black text-xs leading-[120%] font-medium hover:underline"
-            >
-              Sign Up Here
-            </Link>
-          </div> */}
-        </form>
-      </Form>
+            {/* Sign Up Link (optional) */}
+            {/* <div className="text-center text-sm mt-4">
+          <span className="text-gray-700">New to our platform?</span>{" "}
+          <Link
+            href="/signup"
+            className="text-black font-medium hover:underline"
+          >
+            Sign Up Here
+          </Link>
+        </div> */}
+          </form>
+        </Form>
+      </div>
     </div>
   );
 }
