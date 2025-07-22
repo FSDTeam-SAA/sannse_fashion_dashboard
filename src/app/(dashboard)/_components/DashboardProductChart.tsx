@@ -54,13 +54,20 @@ const chartConfig = {
 
 export function DashboardProductChart() {
   return (
-    <Card className="flex flex-col">
-      <CardHeader className="items-start pb-0 mb-5">
-        <CardTitle className="text-[32px] font-semibold leading-[120%]">Most Product</CardTitle>
-        <CardDescription className="text-base leading-[120%] font-normal text-black">Most bookings in the Category?</CardDescription>
+    <Card className="flex flex-col bg-white rounded-lg shadow-sm h-full">
+      <CardHeader className="pb-2 mb-3">
+        <CardTitle className="text-[32px] font-semibold leading-tight">
+          Most Product
+        </CardTitle>
+        <CardDescription className="text-base text-gray-600">
+          Most bookings in the Category
+        </CardDescription>
       </CardHeader>
-      <CardContent className="flex-1 pb-0 h-[487px] w-full">
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square">
+      <CardContent className="flex-1 flex justify-center items-center w-full">
+        <ChartContainer
+          config={chartConfig}
+          className="w-full max-w-[470px] aspect-square"
+        >
           <PieChart>
             <ChartTooltip
               cursor={false}

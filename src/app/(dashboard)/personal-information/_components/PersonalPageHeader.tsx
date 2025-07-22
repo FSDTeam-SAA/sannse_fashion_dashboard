@@ -9,7 +9,7 @@ export default function CategoryPageHeader() {
       <PageHeader
         title="Dashboard"
         breadcrumb="Dashboard > Categories"
-        // btnLink="/dashboard/category/add"
+        btnLink="/dashboard/category/add"
         btnText="Add Category"
         icon={Plus}
       />

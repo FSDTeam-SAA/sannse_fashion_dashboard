@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { SquarePen, Trash2 } from "lucide-react";
+import { Eye, Edit } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import categoryImage from "@/public/images/categoryImage.png";
 import {
@@ -19,133 +19,133 @@ import Link from "next/link";
 const dummyCategories = [
   {
     id: 1,
-    name: "Electronics",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 24,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    type: "Serge",
     addedDate: "2024-07-01",
+    price: 40,
     image: categoryImage,
   },
   {
     id: 2,
-    name: "Clothing",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 35,
+    price: 40,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    type: "Serge",
     addedDate: "2024-06-28",
     image: categoryImage,
   },
   {
     id: 3,
-    name: "Books",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 12,
+    price: 40,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    type: "Serge",
     addedDate: "2024-06-20",
     image: categoryImage,
   },
   {
     id: 4,
-    name: "Groceries",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 48,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    price: 40,
+    type: "Serge",
     addedDate: "2024-06-15",
     image: categoryImage,
   },
   {
     id: 5,
-    name: "Toys",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 18,
+    price: 40,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    type: "Serge",
     addedDate: "2024-06-10",
     image: categoryImage,
   },
   {
     id: 6,
-    name: "Furniture",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 9,
+    price: 40,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    type: "Serge",
     addedDate: "2024-06-01",
     image: categoryImage,
   },
   {
     id: 7,
-    name: "Shoes",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 15,
+    price: 40,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    type: "Serge",
     addedDate: "2024-05-25",
     image: categoryImage,
   },
   {
     id: 8,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    price: 40,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    type: "Serge",
     addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 9,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    price: 40,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    type: "Serge",
     addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 10,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    price: 40,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    type: "Serge",
     addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 11,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    price: 40,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    type: "Serge",
     addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 12,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    price: 40,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    type: "Serge",
     addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 13,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    price: 40,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    type: "Serge",
     addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 14,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    price: 40,
+    fabric_name: "Twill",
+    title: "Navy Blue",
+    type: "Serge",
     addedDate: "2024-05-18",
     image: categoryImage,
   },
 ];
 
-const CategoryTable = () => {
+const FabricPage = () => {
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -164,16 +164,19 @@ const CategoryTable = () => {
       <Table>
         <TableHeader className="">
           <TableRow className="bg-white">
-            <TableHead className="w-1/4 px-4 py-4 font-semibold">
-              Category Name
+            <TableHead className="w-1/4 px-4 py-4 text-base leading-[120%] font-semibold">
+              Fabric Name
             </TableHead>
-            <TableHead className="w-1/4 px-4 py-4 text-center font-semibold">
-              Product
+            <TableHead className="w-1/4 px-4 py-4 text-center font-semibold text-base leading-[120%]">
+              type
             </TableHead>
-            <TableHead className="w-1/4 px-4 py-4 text-center font-semibold">
+            <TableHead className="w-1/4 px-4 py-4 text-center font-semibold text-base leading-[120%]">
+              Price
+            </TableHead>
+            <TableHead className="w-1/4 px-4 py-4 text-center font-semibold text-base leading-[120%]">
               Added
             </TableHead>
-            <TableHead className="w-1/4 px-4 py-4 text-center font-semibold">
+            <TableHead className="w-1/4 px-4 py-4 text-center font-semibold text-base leading-[120%]">
               Actions
             </TableHead>
           </TableRow>
@@ -186,33 +189,38 @@ const CategoryTable = () => {
                 <div className="flex items-center space-x-3">
                   <Image
                     src={category.image}
-                    alt={category.name}
+                    alt={category.fabric_name}
                     width={70}
                     height={78}
                     className="rounded-md object-cover border"
                   />
                   <div>
-                    <p className="font-medium">{category.name}</p>
-                    <p className="text-sm text-gray-500 line-clamp-2">
-                      {category.describe}
+                    <p className="font-medium text-[20px] leading-[120%] mb-2">
+                      {category.fabric_name}
+                    </p>
+                    <p className="text-sm text--[#595959e] line-clamp-2">
+                      {category.title}
                     </p>
                   </div>
                 </div>
               </TableCell>
-              <TableCell className="w-1/4 text-center">
-                {category.productCount}
+              <TableCell className="w-1/4 text-center ">
+                <p className="text-sm text--[#595959e]">{category.type}</p>
               </TableCell>
               <TableCell className="w-1/4 text-center">
-                {category.addedDate}
+                <p className="text-sm text-[#595959e]">{category.price}</p>
               </TableCell>
               <TableCell className="w-1/4 text-center">
-                <div className="flex justify-center">
+                <p className="text-sm text-[#595959e]">{category.addedDate}</p>
+              </TableCell>
+              <TableCell className="w-1/4 text-center">
+                <div className="flex justify-center gap-2">
                   <Button variant="ghost" size="icon">
-                    <Trash2 className="w-4 h-4 text-gray-600" />
+                    <Eye className="w-4 h-4 text-gray-600" />
                   </Button>
-                  <Link href={`/categories/edit/${category.id}`}> 
+                  <Link href={`/fabric/edit/${category.id}`}>
                     <Button variant="ghost" size="icon">
-                      <SquarePen className="w-4 h-4 text-gray-600" />
+                      <Edit className="w-4 h-4 text-gray-600" />
                     </Button>
                   </Link>
                 </div>
@@ -267,4 +275,4 @@ const CategoryTable = () => {
   );
 };
 
-export default CategoryTable;
+export default FabricPage;

@@ -1,29 +1,38 @@
 "use client";
 
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 type PageHeaderProps = {
   title?: string;
   breadcrumb?: string;
-  btn?: React.ReactNode;
+  btnText?: string;
+  btnLink?: string;
+  icon?: React.ElementType;
 };
 
 export default function PageHeader({
   title = "Categories",
   breadcrumb = "Dashboard > Categories",
-  btn,
+  btnText,
+  btnLink,
+  icon: Icon,
 }: PageHeaderProps) {
   return (
-    <header className="w-full text-gray-800 py-2 px-4 flex items-center justify-between">
+    <header className="w-full text-gray-800 py-2 flex items-center justify-between">
       <div className="space-y-1">
         <h1 className="text-[32px] font-semibold leading-[120%]">{title}</h1>
         <p className="text-[20px] font-normal leading-[120%]">{breadcrumb}</p>
       </div>
-      {btn && (
-        <Button className="bg-red-600 text-base leading-[120%] font-medium hover:bg-red-700 text-white px-8 h-[52px] rounded-md">
-          {btn}
-        </Button>
+
+      {btnLink && btnText && (
+        <Link href={btnLink}>
+          <Button className="flex items-center gap-x-2 bg-red-600 text-base leading-[120%] font-medium hover:bg-red-700 text-white px-8 h-[52px] rounded-md">
+            {Icon && <Icon className="w-5 h-5" />}
+            {btnText}
+          </Button>
+        </Link>
       )}
     </header>
   );

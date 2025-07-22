@@ -8,9 +8,9 @@ export default function CategoryPageHeader() {
     <div className="mb-10">
       <PageHeader
         title="Dashboard"
-        breadcrumb="Dashboard > Categories"
-        // btnLink="/dashboard/category/add"
-        btnText="Add Category"
+        breadcrumb="Dashboard > Styles"
+        btnLink="/style/add"
+        btnText="Add Style"
         icon={Plus}
       />
     </div>

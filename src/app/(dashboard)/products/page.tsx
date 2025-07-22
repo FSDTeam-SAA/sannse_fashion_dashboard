@@ -1,14 +1,14 @@
-import React from 'react'
-import ProductPageHeader from './_components/ProductPageHeader'
-import ProductListPage from './_components/ProductListPage'
+import React from "react";
+import ProductListPage from "./_components/ProductListPage";
+import ProductPageHeader from "./_components/ProductPageHeader";
 
 function page() {
   return (
     <div>
-        <ProductPageHeader />
-        <ProductListPage />
+      <ProductPageHeader />
+      <ProductListPage />
     </div>
-  )
+  );
 }
 
-export default page
+export default page;

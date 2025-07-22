@@ -13,6 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Link from "next/link";
 
 // Dummy category data
 const dummyCategories = [
@@ -268,6 +269,7 @@ const ProductListPage = () => {
                   style={{ width: "12%" }}
                 >
                   <div className="flex justify-center items-center gap-1">
+                    <Link href={`/products/edit/${category.id}`}>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -276,6 +278,7 @@ const ProductListPage = () => {
                     >
                       <Edit className="w-4 h-4" />
                     </Button>
+                    </Link>
                     <Button
                       variant="ghost"
                       size="sm"

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { SquarePen, Trash2 } from "lucide-react";
+import { Eye, Edit } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import categoryImage from "@/public/images/categoryImage.png";
 import {
@@ -19,133 +19,119 @@ import Link from "next/link";
 const dummyCategories = [
   {
     id: 1,
-    name: "Electronics",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 24,
-    addedDate: "2024-07-01",
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
+    addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 2,
-    name: "Clothing",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 35,
-    addedDate: "2024-06-28",
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
+    addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 3,
-    name: "Books",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 12,
-    addedDate: "2024-06-20",
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
+    addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 4,
-    name: "Groceries",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 48,
-    addedDate: "2024-06-15",
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
+    addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 5,
-    name: "Toys",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 18,
-    addedDate: "2024-06-10",
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
+    addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 6,
-    name: "Furniture",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 9,
-    addedDate: "2024-06-01",
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
+    addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 7,
-    name: "Shoes",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 15,
-    addedDate: "2024-05-25",
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
+    addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 8,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
     addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 9,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
     addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 10,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
     addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 11,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
     addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 12,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
     addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 13,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
     addedDate: "2024-05-18",
     image: categoryImage,
   },
   {
     id: 14,
-    name: "Beauty",
-    describe:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi odio lorem, mollis eget est eu dolor.",
-    productCount: 27,
+    style_name: "Beauty",
+    title: "Breast Pocket",
+    types_of_styles: 27,
     addedDate: "2024-05-18",
     image: categoryImage,
   },
 ];
 
-const CategoryTable = () => {
+const StylePage = () => {
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -165,10 +151,10 @@ const CategoryTable = () => {
         <TableHeader className="">
           <TableRow className="bg-white">
             <TableHead className="w-1/4 px-4 py-4 font-semibold">
-              Category Name
+              Style Name
             </TableHead>
             <TableHead className="w-1/4 px-4 py-4 text-center font-semibold">
-              Product
+              Types of Styles
             </TableHead>
             <TableHead className="w-1/4 px-4 py-4 text-center font-semibold">
               Added
@@ -186,33 +172,33 @@ const CategoryTable = () => {
                 <div className="flex items-center space-x-3">
                   <Image
                     src={category.image}
-                    alt={category.name}
+                    alt={category.style_name}
                     width={70}
                     height={78}
                     className="rounded-md object-cover border"
                   />
                   <div>
-                    <p className="font-medium">{category.name}</p>
-                    <p className="text-sm text-gray-500 line-clamp-2">
+                    <p className="font-medium">{category.style_name}</p>
+                    {/* <p className="text-sm text-gray-500 line-clamp-2">
                       {category.describe}
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </TableCell>
               <TableCell className="w-1/4 text-center">
-                {category.productCount}
+                {category.types_of_styles}
               </TableCell>
               <TableCell className="w-1/4 text-center">
                 {category.addedDate}
               </TableCell>
               <TableCell className="w-1/4 text-center">
-                <div className="flex justify-center">
+                <div className="flex justify-center gap-2">
                   <Button variant="ghost" size="icon">
-                    <Trash2 className="w-4 h-4 text-gray-600" />
+                    <Eye className="w-4 h-4 text-gray-600" />
                   </Button>
-                  <Link href={`/categories/edit/${category.id}`}> 
+                  <Link href={`/style/edit/${category.id}`}>
                     <Button variant="ghost" size="icon">
-                      <SquarePen className="w-4 h-4 text-gray-600" />
+                      <Edit className="w-4 h-4 text-gray-600" />
                     </Button>
                   </Link>
                 </div>
@@ -267,4 +253,4 @@ const CategoryTable = () => {
   );
 };
 
-export default CategoryTable;
+export default StylePage;

@@ -9,7 +9,7 @@ function TotalDashbaord() {
     <div>
       <DashboardHeader />
       <DashboardCard />
-      <div className="flex flex-col lg:flex-row gap-6 items-center justify-center mt-10">
+      <div className="flex flex-col lg:flex-row gap-6 justify-center mt-10">
         <div className="lg:w-2/3 w-full h-full">
           <DashboardStatisticChart />
         </div>
