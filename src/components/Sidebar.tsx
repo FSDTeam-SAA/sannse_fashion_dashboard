@@ -5,13 +5,13 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
-  Tag,
-  Ticket,
-  List,
-  TrendingUp,
   DollarSign,
   FileText,
   LogOut,
+  ShoppingCart,
+  Grip,
+  ShoppingBasket,
+  Scissors,
   // Bell,
 } from "lucide-react";
 import Image from "next/image";
@@ -19,13 +19,12 @@ import logoImage from "@/public/images/logo.svg";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
-  { name: "Categories", href: "/practice-area", icon: Tag },
-  { name: "Product", href: "/resource-type", icon: Tag },
-  { name: "Order", href: "/promo-code", icon: Ticket },
-  { name: "Order", href: "/resource-list", icon: List },
-  { name: "Fabric", href: "/request-resource", icon: FileText },
+  { name: "Categories", href: "/categories", icon: Grip },
+  { name: "Product", href: "/products", icon: ShoppingBasket  },
+  { name: "Order", href: "/orders", icon: ShoppingCart },
+  { name: "Fabric", href: "/fabric", icon: FileText },
   // { name: "Message", href: "/message", icon: MessageSquare },
-  { name: "Style", href: "/my-sales", icon: TrendingUp },
+  { name: "Style", href: "/style", icon: Scissors },
   {
     name: "Accents",
     href: "/revenue-from-seller",
@@ -38,6 +37,7 @@ export function Sidebar() {
 
   return (
     <div className="flex h-screen sticky bottom-0 top-0 w-[150px] flex-col bg-[#212121] z-50">
+      {/* Logo */}
       <div className="h-[80px] px-4 py-3">
         <Image
           src={logoImage}
@@ -49,7 +49,7 @@ export function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 space-y-3 px-3 overflow-hidden">
+      <nav className="flex-1 space-y-6 flex flex-col items-center justify-start px-3 overflow-y-auto">
         {navigation.map((item) => {
           const isActive =
             pathname === item.href ||
@@ -60,39 +60,37 @@ export function Sidebar() {
               key={item.name}
               href={item.href}
               className={cn(
-                "flex items-center space-x-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors border border-red-700",
+                "flex flex-col w-[90%] mx-auto items-center justify-center space-y-1 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200",
                 isActive
-                  ? "text-yellow-400 hover:bg-slate-600 hover:text-white"
-                  : "text-slate-300 hover:bg-slate-600 hover:text-white"
+                  ? "bg-white text-black"
+                  : "text-slate-300 hover:bg-slate-600/50 hover:text-white"
               )}
             >
-              <div>
-                <div className="flex items-center justify-center">
-                  <item.icon className="h-6 w-6" />
-                </div>
-                <div className="mt-2">
-                  <span className="font-normal text-base leading-[120%]">
-                    {item.name}
-                  </span>
-                </div>
-              </div>
+              <item.icon
+                className={cn(
+                  "h-6 w-6 transition-colors duration-200",
+                  isActive ? "text-black" : ""
+                )}
+              />
+              <span
+                className={cn(
+                  "font-normal text-base leading-[120%] transition-colors duration-200 text-center",
+                  isActive ? "text-black font-medium" : ""
+                )}
+              >
+                {item.name}
+              </span>
             </Link>
           );
         })}
       </nav>
 
-      {/* Logout */}
-      <div className="p-3 cursor-pointer">
-        <p className="flex items-center space-x-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-slate-600 hover:text-white">
-          <div>
-            <div className="flex items-center justify-center">
-              <LogOut className="h-5 w-5" />
-            </div>
-            <div className="mt-2">
-              <span className="font-normal text-base leading-[120%]">Log Out</span>
-            </div>
-          </div>
-        </p>
+      {/* Logout fixed at bottom */}
+      <div className="p-3">
+        <div className="flex flex-col items-center justify-center space-y-1 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition-all duration-200 hover:bg-slate-600/50 hover:text-white cursor-pointer">
+          <LogOut className="h-5 w-5" />
+          <span className="font-normal text-base leading-[120%]">Log Out</span>
+        </div>
       </div>
     </div>
   );
