@@ -8,7 +8,7 @@ export default function AddProductPageHeader() {
     <div className="mb-10">
       <PageHeader
               title="Dashboard"
-              breadcrumb="Dashboard > Products"
+              breadcrumb="Dashboard > Products > Add Product"
               btnLink="/products/add"
               btnText="Add Product"
               icon={Plus}
