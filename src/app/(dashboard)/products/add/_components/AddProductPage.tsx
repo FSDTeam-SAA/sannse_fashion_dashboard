@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
 import {
   Select,
   SelectContent,
@@ -12,6 +11,10 @@ import {
 } from "@/components/ui/select";
 import Image from "next/image";
 import { CloudUpload } from "lucide-react";
+
+// Dynamically import ReactQuill with SSR disabled
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import "react-quill/dist/quill.snow.css";
 
 const fabricOptions = ["Cotton", "Twill", "Silk", "Wool"];
 const categoryOptions = ["Clothing", "Accessories", "Footwear"];
@@ -68,7 +71,6 @@ const AddProductPage = () => {
     }
   };
 
-  // Fix: onKeyDown event should be KeyboardEvent, not ChangeEvent
   const handleTagInput = (
     e: React.KeyboardEvent<HTMLInputElement>,
     setter: React.Dispatch<React.SetStateAction<string[]>>,
@@ -79,7 +81,7 @@ const AddProductPage = () => {
     if (e.key === "Enter" && value && !options.includes(value)) {
       setter((prev) => [...prev, value]);
       input.value = "";
-      e.preventDefault(); // Prevent form submission if inside a form
+      e.preventDefault();
     }
   };
 
@@ -91,100 +93,99 @@ const AddProductPage = () => {
   };
 
   return (
-
-    <div className="flex space-x-6">
+    <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
       {/* Left Section */}
-      <div className="w-2/3 rounded-lg bg-white p-6">
-        <div className="space-y-6">
+      <div className="w-full lg:w-2/3 rounded-lg bg-white p-4 sm:p-6">
+        <div className="space-y-4 sm:space-y-6">
           {/* Product Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-xs sm:text-sm font-medium text-gray-700">
               Product Name
             </label>
             <input
               type="text"
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-2 h-[50px]"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-2 h-10 sm:h-[50px]"
               placeholder="Type Product name here..."
             />
           </div>
 
           {/* Description - ReactQuill */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-xs sm:text-sm font-medium text-gray-700">
               Description
             </label>
             <ReactQuill
               value={description}
               onChange={setDescription}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm h-[250px] overflow-hidden"
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm h-[150px] sm:h-[250px] overflow-hidden"
               placeholder="Type Product description here..."
             />
           </div>
 
           {/* Color + Size */}
-          <div className="flex space-x-4">
-            <div className="w-1/2">
-              <label className="block text-sm font-medium text-gray-700">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="w-full sm:w-1/2">
+              <label className="block text-xs sm:text-sm font-medium text-gray-700">
                 Color
               </label>
               <input
                 type="color"
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
-                className="mt-1 block w-full h-[50px] border border-gray-300 rounded-md shadow-sm "
+                className="mt-1 block w-full h-10 sm:h-[50px] border border-gray-300 rounded-md shadow-sm"
               />
             </div>
-            <div className="w-1/2">
-              <label className="block text-sm font-medium text-gray-700">
+            <div className="w-full sm:w-1/2">
+              <label className="block text-xs sm:text-sm font-medium text-gray-700">
                 Size
               </label>
               <input
                 type="text"
                 value={size}
                 onChange={(e) => setSize(e.target.value)}
-                className="mt-1 block w-full border h-[50px] border-gray-300 rounded-md shadow-sm p-2"
+                className="mt-1 block w-full border h-10 sm:h-[50px] border-gray-300 rounded-md shadow-sm p-2"
                 placeholder="Type Product Size here..."
               />
             </div>
           </div>
 
           {/* Price + SKU + Stock */}
-          <div className="flex space-x-4">
-            <div className="w-1/3">
-              <label className="block text-sm font-medium text-gray-700">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="w-full sm:w-1/3">
+              <label className="block text-xs sm:text-sm font-medium text-gray-700">
                 Price
               </label>
               <input
                 type="text"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
-                className="mt-1 block w-full border h-[50px] border-gray-300 rounded-md shadow-sm p-2"
+                className="mt-1 block w-full border h-10 sm:h-[50px] border-gray-300 rounded-md shadow-sm p-2"
                 placeholder="Type Product Price here..."
               />
             </div>
-            <div className="w-1/3">
-              <label className="block text-sm font-medium text-gray-700">
+            <div className="w-full sm:w-1/3">
+              <label className="block text-xs sm:text-sm font-medium text-gray-700">
                 SKU
               </label>
               <input
                 type="text"
                 value={sku}
                 onChange={(e) => setSku(e.target.value)}
-                className="mt-1 block w-full h-[50px] border border-gray-300 rounded-md shadow-sm p-2"
+                className="mt-1 block w-full h-10 sm:h-[50px] border border-gray-300 rounded-md shadow-sm p-2"
                 placeholder="JY18B7C17Y9"
               />
             </div>
-            <div className="w-1/3">
-              <label className="block text-sm font-medium text-gray-700">
+            <div className="w-full sm:w-1/3">
+              <label className="block text-xs sm:text-sm font-medium text-gray-700">
                 Stock
               </label>
               <input
                 type="text"
                 value={stock}
                 onChange={(e) => setStock(e.target.value)}
-                className="mt-1 block w-full h-[50px] border border-gray-300 rounded-md shadow-sm p-2"
+                className="mt-1 block w-full h-10 sm:h-[50px] border border-gray-300 rounded-md shadow-sm p-2"
                 placeholder="Type Product Stock here..."
               />
             </div>
@@ -192,11 +193,11 @@ const AddProductPage = () => {
 
           {/* Default Fabric */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-xs sm:text-sm font-medium text-gray-700">
               Default Fabric
             </label>
             <Select onValueChange={setDefaultFabric} value={defaultFabric}>
-              <SelectTrigger className="w-full h-[50px] border border-gray-300 rounded-md shadow-sm p-2">
+              <SelectTrigger className="w-full h-10 sm:h-[50px] border border-gray-300 rounded-md shadow-sm p-2">
                 <SelectValue placeholder="Select Fabric" />
               </SelectTrigger>
               <SelectContent>
@@ -211,14 +212,14 @@ const AddProductPage = () => {
 
           {/* Customize Fabric */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-xs sm:text-sm font-medium text-gray-700">
               Customize Fabric
             </label>
             <div className="mt-1 flex flex-wrap gap-2">
               {customFabrics.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center px-2 py-1 bg-red-500 text-white rounded-full text-sm"
+                  className="inline-flex items-center px-2 py-1 bg-red-500 text-white rounded-full text-xs sm:text-sm"
                 >
                   {tag}
                   <button
@@ -234,7 +235,7 @@ const AddProductPage = () => {
                 onKeyDown={(e) =>
                   handleTagInput(e, setCustomFabrics, fabricOptions)
                 }
-                className="mt-1 block w-full h-[50px] border border-gray-300 rounded-md shadow-sm p-2"
+                className="mt-1 block w-full h-10 sm:h-[50px] border border-gray-300 rounded-md shadow-sm p-2"
                 placeholder="Search Fabric"
               />
             </div>
@@ -242,14 +243,14 @@ const AddProductPage = () => {
 
           {/* Customize Style */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-xs sm:text-sm font-medium text-gray-700">
               Customize Style
             </label>
             <div className="mt-1 flex flex-wrap gap-2">
               {customStyles.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center px-2 py-1 bg-red-500 text-white rounded-full text-sm"
+                  className="inline-flex items-center px-2 py-1 bg-red-500 text-white rounded-full text-xs sm:text-sm"
                 >
                   {tag}
                   <button
@@ -265,7 +266,7 @@ const AddProductPage = () => {
                 onKeyDown={(e) =>
                   handleTagInput(e, setCustomStyles, styleOptions)
                 }
-                className="mt-1 h-[50px] block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                className="mt-1 h-10 sm:h-[50px] block w-full border border-gray-300 rounded-md shadow-sm p-2"
                 placeholder="Search Style"
               />
             </div>
@@ -273,14 +274,14 @@ const AddProductPage = () => {
 
           {/* Customize Accents */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-xs sm:text-sm font-medium text-gray-700">
               Customize Accents
             </label>
             <div className="mt-1 flex flex-wrap gap-2">
               {customAccents.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center px-2 py-1 bg-red-500 text-white rounded-full text-sm"
+                  className="inline-flex items-center px-2 py-1 bg-red-500 text-white rounded-full text-xs sm:text-sm"
                 >
                   {tag}
                   <button
@@ -296,7 +297,7 @@ const AddProductPage = () => {
                 onKeyDown={(e) =>
                   handleTagInput(e, setCustomAccents, accentOptions)
                 }
-                className="mt-1 block h-[50px] w-full border border-gray-300 rounded-md shadow-sm p-2"
+                className="mt-1 block h-10 sm:h-[50px] w-full border border-gray-300 rounded-md shadow-sm p-2"
                 placeholder="Search Accents"
               />
             </div>
@@ -305,13 +306,13 @@ const AddProductPage = () => {
       </div>
 
       {/* Right Section - Category & Image Upload */}
-      <div className="w-1/3 bg-white p-6 rounded-lg shadow space-y-6 h-[500px]">
+      <div className="w-full lg:w-1/3 bg-white p-4 sm:p-6 rounded-lg shadow space-y-4 sm:space-y-6 h-auto lg:h-[500px]">
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-xs sm:text-sm font-medium text-gray-700">
             Category
           </label>
           <Select onValueChange={setCategory} value={category}>
-            <SelectTrigger className="w-full h-[50px] border border-gray-300 rounded-md shadow-sm p-2">
+            <SelectTrigger className="w-full h-10 sm:h-[50px] border border-gray-300 rounded-md shadow-sm p-2">
               <SelectValue placeholder="Select Category" />
             </SelectTrigger>
             <SelectContent>
@@ -326,10 +327,10 @@ const AddProductPage = () => {
 
         {/* Image Upload */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-xs sm:text-sm font-medium text-gray-700">
             Photo
           </label>
-          <div className="mt-1 border-2 border-gray-300 border-dashed rounded-md p-4 text-center">
+          <div className="mt-1 border-2 border-gray-300 border-dashed rounded-md p-3 sm:p-4 text-center">
             <input
               type="file"
               accept="image/*"
@@ -342,37 +343,23 @@ const AddProductPage = () => {
               htmlFor="imageUpload"
               className="cursor-pointer flex flex-col items-center"
             >
-              {/* <svg
-                className="w-12 h-12 text-red-500 mb-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                />
-              </svg> */}
-              <div className="flex items-center justify-center h-[150px] ">
-                <CloudUpload className="w-10 h-10 text-red-600" />
+              <div className="flex items-center justify-center h-[100px] sm:h-[150px]">
+                <CloudUpload className="w-8 h-8 sm:w-10 sm:h-10 text-red-600" />
               </div>
-              <span className="text-red-500">
+              <span className="text-red-500 text-xs sm:text-sm">
                 Drag and drop image here, or click add image (max 5)
               </span>
             </label>
-            <div className="flex justify-between mt-4">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-3 sm:mt-4">
               {Array.from({ length: 5 }, (_, index) => (
                 <div
                   key={index}
-                  className="w-20 h-20 border border-gray-300 rounded flex items-center justify-center text-sm text-gray-500"
+                  className="w-16 h-16 sm:w-20 sm:h-20 border border-gray-300 rounded flex items-center justify-center text-xs sm:text-sm text-gray-500"
                 >
                   {images[index] ? (
                     <Image
-                      width={200}
-                      height={200}
+                      width={80}
+                      height={80}
                       src={images[index]}
                       alt={`Image ${index + 1}`}
                       className="w-full h-full object-cover rounded"

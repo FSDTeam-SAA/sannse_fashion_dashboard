@@ -27,7 +27,7 @@ const navigation = [
   { name: "Style", href: "/style", icon: Scissors },
   {
     name: "Accents",
-    href: "/revenue-from-seller",
+    href: "/accents",
     icon: DollarSign,
   },
 ];
