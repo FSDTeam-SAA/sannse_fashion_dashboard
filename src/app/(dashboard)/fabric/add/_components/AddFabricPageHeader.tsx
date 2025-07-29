@@ -8,7 +8,7 @@ export default function AddFabricPageHeader() {
     <div className="mb-10">
       <PageHeader
               title="Dashboard"
-              breadcrumb="Dashboard > Categories > Add Category"
+              breadcrumb="Dashboard > Fabric > Add Fabric"
               btnLink="/fabric/add"
               btnText="Add Fabric"
               icon={Plus}

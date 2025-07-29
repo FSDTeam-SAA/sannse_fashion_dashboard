@@ -1,9 +1,14 @@
 import React from 'react'
-import { OrderTable } from './_componetns/order-table'
+import OrderPage from './_componetns/order-table'
+import OrderPageHeader from './_componetns/OrderPageHeader'
+// import { OrderTable } from './_componetns/order-table'
 
 const page = () => {
   return (
-    <div><OrderTable/></div>
+    <div>
+      <OrderPageHeader />
+      <OrderPage />
+    </div>
   )
 }
 
